@@ -1,5 +1,5 @@
 //ce script permet de calculer les surfaces de déprise agricole potentielle en Europe entre 2000 et 2018
-geometry = ee.Geometry.Polygon([
+var geometry = ee.Geometry.Polygon([
     [
       [-26.64873246104071, 66.07225537514246],
       [-16.45341996104071, 45.43052529125806],
@@ -15,6 +15,7 @@ geometry = ee.Geometry.Polygon([
       [35.38407890643657, 71.15848727621125]
     ]
   ]);
+var countries = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017");
 
 var pixelArea = ee.Image.pixelArea();
 function calcSurf(regionMasquee, geometry) {
