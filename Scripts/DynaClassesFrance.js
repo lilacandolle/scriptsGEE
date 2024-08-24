@@ -1,5 +1,4 @@
-//ce script permet de regarder les dynamiques temporelles des espaces dee déprise agricole potentielle en France en fonction de l'occupation du sol de départ
-//ce script marche mais il doit tourner quelques minutes
+//ce script permet d'observer les dynamiques temporelles des espaces de déprise agricole potentielle en France en fonction de l'occupation du sol de départ
 var france = countries.filter(ee.Filter.eq('country_na', 'France'));
 var countries = ee.FeatureCollection("USDOS/LSIB_SIMPLE/2017");
 var landCover1990 = ee.Image('COPERNICUS/CORINE/V20/100m/1990').clip(france).select('landcover');
@@ -36,7 +35,7 @@ var da_22 = lc32_2018.and(lc22_1990);
 var da_23 = lc32_2018.and(lc23_1990);
 var da_24 = lc32_2018.and(lc24_1990);*/
 
-///2000 pas 2018
+///2000 mais pas 2018
 //var c2000_2018 = deprise_agri_pot_2000.and(deprise_agri_pot.not());
 
 ///calcul aires
@@ -69,21 +68,20 @@ var surfaces = [
 
 var years = [2000, 2006, 2012, 2018];
 
-// Créez un graphique avec des options d'affichage adaptées
 var chart = ui.Chart.array.values(surfaces, 0, years)
     .setChartType('LineChart')
     .setOptions({
       title: 'Surface des zones de déprise agricole potentielle (km²)',
       hAxis: {
         title: 'Année',
-        minValue: 2000,  // Valeur minimale pour l'axe X
-        maxValue: 2020,   // Valeur maximale pour l'axe X
+        minValue: 2000,
+        maxValue: 2020,  
       },
       vAxis: {
         title: 'Surface (km²)', 
-        minValue: 600,  // Valeur minimale pour l'axe Y
-        maxValue: 800,  // Valeur maximale pour l'axe Y
-        format: 'decimal'  // Format pour les nombres
+        minValue: 600, 
+        maxValue: 800, 
+        format: 'decimal'  
       },
       lineWidth: 2,
       pointSize: 5,
@@ -151,6 +149,7 @@ var chart = ui.Chart(data)
 
 print(chart);
 print('Surfaces par classe et par année:', data);
+
 //Visualisation       
 var depriseVis = {
   min: 0,
